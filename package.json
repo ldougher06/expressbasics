@@ -1,0 +1,23 @@
+{
+  "name": "expressbasics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldougher06/expressbasics.git"
+  },
+  "author": "logan dougher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ldougher06/expressbasics/issues"
+  },
+  "homepage": "https://github.com/ldougher06/expressbasics#readme",
+  "dependencies": {
+    "ejs": "^2.3.3",
+    "express": "^4.13.3"
+  }
+}

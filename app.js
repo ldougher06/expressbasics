@@ -3,11 +3,12 @@ var fs = require('fs');
 var express = require('express');
 var lessCSS = require('less-middleware');
 var morgan = require('morgan');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var pizza = require('./routes/pizza');
 var chickennuggets = require('./routes/chickennuggets');
+var imgur = require('./routes/imgur');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use(express.static('public'));
 app.use('/', routes);
 app.use('/pizza', pizza);
 app.use('/chickennuggets', chickennuggets);
+app.use('/imgur', imgur);
 
 app.use(function (req, res) {
   res.status(403).send('Unauthorized!');

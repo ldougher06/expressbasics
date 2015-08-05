@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> | imgur</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+  </head>
+  <body>
+    <h1>Welcome to imgur</h1>
+    <form action="/imgur/upload" METHOD="POST" enctype="multipart/form-data">
+      <input type="file" name="image" accept="image/*">
+      <input type="submit" value="upload">
+    </form>
+  </body>
+</html>

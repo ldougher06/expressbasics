@@ -2,11 +2,12 @@
 <html>
   <head>
     <title><%= title %> | Kewl Stuff</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
   <body>
     <h1>My Site Title is <%= title %></h1>
     <h2><%= welcome %></h2>
-    <h3>These are the most awesome things...
+    <h2>These are the most awesome things...
       <ul>
         <% awesomeThings.forEach(function(thing) { %>
           <li><%= thing %> is awesome</li>

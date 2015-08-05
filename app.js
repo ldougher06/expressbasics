@@ -11,6 +11,8 @@ var chickennuggets = require('./routes/chickennuggets');
 
 var app = express();
 
+require('./lib/secrets');
+
 app.set('view engine', 'ejs');
 app.set('case sensitive routing', true);
 

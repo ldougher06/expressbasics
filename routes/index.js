@@ -13,20 +13,15 @@ router.get('/hello', function (req, res) {
 });
 
 router.get('/awesomethings', function (req, res) {
-  setTimeout(function () {
+  var collection = global.db.collection('awesomethings');
 
-    var awesomeThings = [
-      'pizza',
-      'randy savage',
-      'buddy',
-    ];
-
+  collection.find().toArray(function(err, things){
     res.render('templates/world',
       { welcome: 'thanks for coming!',
-        awesomeThings: awesomeThings
+        awesomeThings: things
       }
     );
-  }); 5000;
+  });
 });
 
 router.get('/test', function (req, res, next) {

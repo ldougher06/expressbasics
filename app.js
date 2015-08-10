@@ -12,7 +12,10 @@ var imgur = require('./routes/imgur');
 
 var app = express();
 
-require('./lib/secrets');
+if(process.env.NODE_ENV !== 'production') {
+  require('./lib/secrets');
+}
+
 require('./lib/mongodb');
 
 app.set('view engine', 'ejs');

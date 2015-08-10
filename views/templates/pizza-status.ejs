@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %> | Pizza | Completed Orders</title>
+</head>
+<body>
+  <h1>Completed Orders</h1>
+  <a href="/pizza/order">New Order</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Oty</th>
+        <th>Size</th>
+        <th>Style</th>
+        <th>Toppings</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(function (order) { %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.qty %></td>
+        <td><%= order.size %></td>
+        <td><%= order.style %></td>
+        <td><%= order.toppings %></td>
+        <td><%= order.createdAt %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

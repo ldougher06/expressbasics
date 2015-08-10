@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %> | Pizza | List Orders</title>
+</head>
+<body>
+  <h1>Orders</h1>
+  <a href="/pizza/order">New Order</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Oty</th>
+        <th>Size</th>
+        <th>Style</th>
+        <th>Toppings</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(function (order) { %>
+      <tr>
+        <td><%= order.name %></td>
+        <td><%= order.qty %></td>
+        <td><%= order.size %></td>
+        <td><%= order.style %></td>
+        <td><%= order.toppings %></td>
+        <td><%= order.createdAt %></td>
+        <td>
+        <form action="pizza/order/<%= order._id %>/complete" method="post">
+          <input type="submit" value="complete">
+        </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

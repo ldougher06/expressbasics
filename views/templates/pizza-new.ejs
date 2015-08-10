@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %> | Pizza | New Order</title>
+</head>
+<body>
+  <h1>World Famous Pizza</h1>
+  <a href="/pizza">Cancel</a>
+  <form action="/pizza/order" method="POST">
+    Name: <input name="name" type="text" placeholder="Name">
+    Qty: <input name="qty" type="number" min="1" value="1">
+    Size:
+    <select name="size">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+    Style:
+    <select name="style">
+      <option value="thin">Thin Crust</option>
+      <option value="hand-tossed">Hand Tossed</option>
+      <option value="broolyn">Brooklyn</option>
+      <option value="deepdish">Deepdish</option>
+    </select>
+    Toppings:
+    <select name="toppings">
+      <option value="cheese">Cheese</option>
+      <option value="pepperoni">Pepperoni</option>
+      <option value="sausage">Sausage</option>
+      <option value="cheese">Anchovies</option>
+      <option value="olives">Black Olives</option>
+      <option value="cheese">Mushrooms</option>
+      <option value="spinach">Spinach</option>
+    </select>
+    <input type="submit" value="ORDER">
+  </form>
+</body>
+</html>

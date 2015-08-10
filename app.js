@@ -73,6 +73,6 @@ app.use(function (err, req, res, next) {
 var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
-
+  console.log(process.env);
   console.log('Example app listening at http://%s:%d', host, port);
 });

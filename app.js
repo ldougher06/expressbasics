@@ -73,7 +73,9 @@ app.use(function (err, req, res, next) {
   res.status(500).send('My Bad');
 });
 
-var server = app.listen(3000, function () {
+var port = process.env.PORT || 3000;
+
+var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log(process.env);

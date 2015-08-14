@@ -30,12 +30,20 @@ router.get('/order', function (req, res) {
 
 //saves order to db
 router.post('/order', function (req, res) {
-
-  var collection = global.db.collection('chickenNuggets');
-
-  collection.save(req.body, function(){
+  var order = new Order(req.body);
+  order.save(function () {
     res.redirect('/chickennuggets');
   });
+
+  // Order.save(req.body, function () {
+  //   res.redirect('/chickennuggets');
+  // });
+
+  // var collection = global.db.collection('chickenNuggets');
+
+  // collection.save(req.body, function(){
+  //   res.redirect('/chickennuggets');
+  // });
 });
 
 router.post('/order/:id/complete', function (req, res) {

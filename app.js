@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var pizza = require('./routes/pizza');
 var chickennuggets = require('./routes/chickennuggets');
 var imgur = require('./routes/imgur');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -29,8 +30,9 @@ app.use(lessCSS('public'));
 var logStream = fs.createWriteStream('access.log', {flags: 'a'});
 app.use(morgan('combined', {stream: logStream}));
 app.use(morgan('dev'));
+app.use('/user', user);
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
   var client = require('./lib/loggly')('incoming');
 
   client.log({

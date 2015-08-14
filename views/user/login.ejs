@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../templates/head', {page: 'Login'}) %>
+  <body>
+  <h1>Login</h1>
+  <form action='/user/login' method='post'>
+    <label>Email</label>
+    <input type='email' name='email' placeholder='a@b.com'>
+    <label>Password</label>
+    <input type='password' name='password' placeholder='password'>
+    <input type='submit' value='login'>
+  </form>
+  </body>
+</html>

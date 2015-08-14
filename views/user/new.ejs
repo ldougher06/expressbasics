@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../templates/head', {page: 'Register'}) %>
+  <body>
+  <h1>Sign Up</h1>
+  <form action='/user' method='post'>
+    <label>Email</label>
+    <input type='email' name='email' placeholder='a@b.com'>
+    <label>Password</label>
+    <input type='password' name='password' placeholder='password'>
+    <label>Password Confirmation</label>
+    <input type='password' name='password confirmation'>
+    <input type='submit' value='register'>
+  </form>
+  </body>
+</html>

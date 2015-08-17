@@ -1,22 +1,26 @@
 var express = require('express');
 var moment = require('moment');
 var ObjectID = require('mongodb').ObjectID;
+var Order = require('../models/ChickenNuggets');
 var router = express.Router();
-var ChickenNuggets = require('../models/ChickenNuggets');
+
 //list of orders ( chicken-index.ejs )
-/*router.get('/', function (req, res) {
-  ChickenNuggets.findAllOrders(function (err, orders) {
-    res.render('templates/chicken-index')
-  })
-  function formatAllOrders (orders) {
+router.get('/', function (req, res) {
+  var id = req.session.user._id;
+
+  Order.findAllByUserId(id, function (err, orders) {
+    res.render('templates/chicken-index', {orders: formatAllOrders(orders)});
+  });
+
+  function formatAllOrders(orders) {
     return orders.map(function (order) {
       order.flavor = order.style;
-      //order.createdAt: moment(order._id.getTimestamp()).fromNow();
+      order.createdAt = moment(order._id.getTimestamp()).fromNow();
       delete order.style;
       return order;
     });
-  };
-}*/
+  }
+});
 
 //order form
 router.get('/order', function (req, res) {
@@ -25,32 +29,20 @@ router.get('/order', function (req, res) {
 
 //saves order to db
 router.post('/order', function (req, res) {
-  var order = new Order(req.body);
-  order.save(function () {
+  var o = req.body;
+  o.userId = req.session.user._id;
+
+  Order.create(o, function () {
     res.redirect('/chickennuggets');
   });
-
-  // Order.save(req.body, function () {
-  //   res.redirect('/chickennuggets');
-  // });
-
-  // var collection = global.db.collection('chickenNuggets');
-
-  // collection.save(req.body, function(){
-  //   res.redirect('/chickennuggets');
-  // });
 });
 
 router.post('/order/:id/complete', function (req, res) {
-
-  var collection = global.db.collection('chickenNuggets');
-
-  collection.update(
-    {_id: ObjectID(req.params.id)},
-    {$set: {complete:true}},
-    function(){
+  Order.findById(req.params.id, function (err, order) {
+    order.complete(function () {
       res.redirect('/chickennuggets');
     });
+  });
 });
 
 module.exports = router;

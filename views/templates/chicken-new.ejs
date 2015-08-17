@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= title %> | Chicken | New Order</title>
-</head>
+<%- include('head', {page: 'Chicken | New Order'}) %>
 <body>
+  <%- include('header') %>
   <h1>World Famous Chicken Nuggets</h1>
   <a href="/chickennuggets">Cancel</a>
   <form action="/chickennuggets/order" method="POST">
@@ -18,5 +17,6 @@
     Qty: <input name="qty" type="number" min="1" value="6">
     <input type="submit" value="Order me some nuggets">
   </form>
+  <%- include('javascripts') %>
 </body>
 </html>

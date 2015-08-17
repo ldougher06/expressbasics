@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %> | Kewl Stuff</title>
+    <%- include('head', {page: 'Awesome Things'}) %>
     <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
   <body>
+    <%- include('header') %>
     <h1>My Site Title is <%= title %></h1>
     <h2><%= welcome %></h2>
     <h2>These are the most awesome things...
@@ -13,6 +14,7 @@
           <li><%= thing.name %> is awesome</li>
       <% }); %>
       </ul>
+      <%- include('javascripts') %>
     </h3>
   </body>
 </html>

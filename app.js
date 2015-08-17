@@ -24,6 +24,7 @@ app.set('view engine', 'ejs');
 app.set('case sensitive routing', true);
 
 app.locals.title = 'aweso.me';
+app.locals.user = null;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(lessCSS('public'));
@@ -36,17 +37,21 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
 app.use('/user', user);
 
-
-app.use(function (req, res, next) {
-  if(req.session.userId) {
+// Below asks "can i access the user obj, otherwise null"
+app.use(function requireAuth (req, res, next) {
+  if(req.session.user) {
+    res.locals.user = req.session.user;
     next();
   } else {
+    res.locals.user = null;
     res.redirect('/user/login');
   }
 });
-/*app.use(function (req, res, next) {
+
+app.use(function (req, res, next) {
   var client = require('./lib/loggly')('incoming');
 
   client.log({
@@ -97,3 +102,5 @@ var server = app.listen(port, function () {
   console.log(process.env);
   console.log('Example app listening at http://%s:%d', host, port);
 });
+
+module.exports = app;

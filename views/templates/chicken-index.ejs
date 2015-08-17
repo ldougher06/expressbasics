@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= title %> | Chicken | List Orders</title>
-</head>
+<%- include('head', {page: 'Chicken | List Orders'}) %>
 <body>
+  <%- include('header') %>
   <h1>Orders</h1>
   <a href="/chickennuggets/order">New Order</a>
   <table>
@@ -11,26 +10,27 @@
       <tr>
         <th>Name</th>
         <th>Flavor</th>
-        <th>Oty</th>
+        <th>Qty</th>
         <th>Time</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% orders.forEach(function (order) { %>
-      <tr>
-        <td><%= order.name %></td>
-        <td><%= order.flavor %></td>
-        <td><%= order.qty %></td>
-        <td><%= order.createdAt %></td>
-        <td>
-        <form action="chickennuggets/order/<%= order._id %>/complete" method="post">
-          <input type="submit" value="complete">
-        </form>
-        </td>
-      </tr>
+        <tr>
+          <td><%= order.name %></td>
+          <td><%= order.flavor %></td>
+          <td><%= order.qty %></td>
+          <td><%= order.createdAt %></td>
+          <td>
+            <form action="/chickennuggets/order/<%= order._id %>/complete" method="post">
+              <input type="submit" value="Complete">
+            </form>
+          </td>
+        </tr>
       <% }); %>
     </tbody>
   </table>
+  <%- include('javascripts') %>
 </body>
 </html>

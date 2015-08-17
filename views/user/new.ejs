@@ -2,15 +2,18 @@
 <html>
   <%- include('../templates/head', {page: 'Register'}) %>
   <body>
-  <h1>Sign Up</h1>
-  <form action='/user' method='post'>
-    <label>Email</label>
-    <input type='email' name='email' placeholder='a@b.com'>
-    <label>Password</label>
-    <input type='password' name='password' placeholder='password'>
-    <label>Password Confirmation</label>
-    <input type='password' name='password confirmation'>
-    <input type='submit' value='register'>
-  </form>
+    <%- include('../templates/header') %>
+    <h1>Register</h1>
+    <form action="/user" method="post">
+      <fieldset>
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="a@b.com">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="password">
+        <label for="password_confirm">Password Confirmation</label>
+        <input type="password" name="password_confirm" placeholder="password">
+        <input class="pure-button pure-button-primary" type="submit" value="register">
+      </fieldset>
+    </form>
   </body>
 </html>

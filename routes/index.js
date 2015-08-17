@@ -17,7 +17,8 @@ router.get('/awesomethings', function (req, res) {
 
   collection.find().toArray(function(err, things){
     res.render('templates/world',
-      { welcome: 'thanks for coming!',
+      {
+        welcome: 'thanks for coming!',
         awesomeThings: things
       }
     );

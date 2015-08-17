@@ -4,6 +4,7 @@ var express = require('express');
 var lessCSS = require('less-middleware');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var pizza = require('./routes/pizza');
@@ -30,8 +31,21 @@ app.use(lessCSS('public'));
 var logStream = fs.createWriteStream('access.log', {flags: 'a'});
 app.use(morgan('combined', {stream: logStream}));
 app.use(morgan('dev'));
+app.use(session({
+  secret: 'expressbasicsisareallyawesomeapp',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use('/user', user);
 
+
+app.use(function (req, res, next) {
+  if(req.session.userId) {
+    next();
+  } else {
+    res.redirect('/user/login');
+  }
+});
 /*app.use(function (req, res, next) {
   var client = require('./lib/loggly')('incoming');
 
@@ -43,7 +57,7 @@ app.use('/user', user);
     method: req.method
   });
   next();
-});
+});*/
 
 app.use(express.static('public'));
 

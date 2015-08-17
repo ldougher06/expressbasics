@@ -2,26 +2,21 @@ var express = require('express');
 var moment = require('moment');
 var ObjectID = require('mongodb').ObjectID;
 var router = express.Router();
-
+var ChickenNuggets = require('../models/ChickenNuggets');
 //list of orders ( chicken-index.ejs )
-router.get('/', function (req, res) {
-  var collection = global.db.collection('chickenNuggets');
-
-  collection.find().toArray(function (err, orders) {
-    var formattedOrders = orders.map(function (order) {
-      return {
-        //return is passing to the view
-        _id: order._id,
-        name: order.name,
-        flavor: order.style,
-        qty: order.qty,
-        createdAt: moment(order._id.getTimestamp()).fromNow()
-      }
+/*router.get('/', function (req, res) {
+  ChickenNuggets.findAllOrders(function (err, orders) {
+    res.render('templates/chicken-index')
+  })
+  function formatAllOrders (orders) {
+    return orders.map(function (order) {
+      order.flavor = order.style;
+      //order.createdAt: moment(order._id.getTimestamp()).fromNow();
+      delete order.style;
+      return order;
     });
-
-    res.render('templates/chicken-index', {orders: formattedOrders});
-  });
-});
+  };
+}*/
 
 //order form
 router.get('/order', function (req, res) {

@@ -9,8 +9,12 @@ router.get('/login', function loginUser (req, res) {
 
 router.post('/login', function doLogin (req, res) {
   User.login(req.body, function (err, user) {
-    res.redirect('/user/login');
-    console.log(err, user);
+    console.log(req);
+    req.session.regenerate(function () {
+      req.session.userId = user._id;
+      res.redirect('/');
+      console.log(err, user);
+    });
   });
 });
 
@@ -26,7 +30,7 @@ router.post('/', function createUser (req, res) {
     if (err) {
       res.render('user/new', {err: err});
     } else {
-    res.redirect('/');
+    res.redirect('/user/login');
     }
   })
 });

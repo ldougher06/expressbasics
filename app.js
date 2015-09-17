@@ -62,11 +62,9 @@ app.use(function (req, res, next) {
     method: req.method
   });
   next();
-});*/
+});
 
 app.use(express.static('public'));
-
-
 
 app.use('/', routes);
 app.use('/pizza', pizza);
@@ -77,7 +75,7 @@ app.use(function (req, res) {
   res.status(403).send('Unauthorized!');
 });
 
-app.use(function (err, req, res, next) {
+/*app.use(function (err, req, res, next) {
   var client = require('./lib/loggly')('error');
 
   client.log({
@@ -92,7 +90,7 @@ app.use(function (err, req, res, next) {
   // pass 4 arguments to create an error handling middleware
   console.log('ERRRRRRRRRR', err.stack);
   res.status(500).send('My Bad');
-});
+});*/
 
 var port = process.env.PORT || 3000;
 

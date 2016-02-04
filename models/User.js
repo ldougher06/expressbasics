@@ -14,23 +14,19 @@ User.findByEmail = function (email, cb) {
 
 User.login = function (u, cb) {
   User.findByEmail(u.email, function (err, user) {
-    if(user) {
-      // email found
+    if (user) {
       bcrypt.compare(u.password, user.hashedPassword, function (err, match) {
         if (match) {
-          // login the user
           cb(null, user);
         } else {
-          // bad password etc.
-          cb('Bad email or password!!!');
+          cb('Bad email or password!');
         }
       });
     } else {
-      // no email found
-      cb('Bad email or password!!!');
+      cb('Bad email or password!');
     }
   });
-};
+}
 
 User.create = function (u, cb) {
   if (u.password !== u.password_confirm) {

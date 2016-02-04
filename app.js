@@ -1,4 +1,5 @@
 var fs = require('fs');
+var chalk = require('chalk');
 
 var express = require('express');
 var lessCSS = require('less-middleware');
@@ -39,6 +40,7 @@ app.use(session({
 }));
 
 app.use('/user', user);
+//app.use('/user/register', new);
 
 // Below asks "can i access the user obj, otherwise null"
 app.use(function requireAuth (req, res, next) {
@@ -97,8 +99,9 @@ var port = process.env.PORT || 3000;
 var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
-  console.log(process.env);
-  console.log('Example app listening at http://%s:%d', host, port);
+  // console.log(process.env);
+  // console.log('ExpressBasics listening at http://localhost port');
+  console.log(chalk.blue.bold('ExpressBasics started. ') + chalk.red.bold.bgWhite('Listening on PORT ' + port));
 });
 
 module.exports = app;
